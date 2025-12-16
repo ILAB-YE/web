@@ -163,7 +163,7 @@ export default class EduViewer {
         if (this.Tools === undefined) return;
 
         this.Viewer.addControl(
-            MakeToolControlsElement(this.Tools),
+            MakeToolControlsElement(this.Tools) as any,
             {
                 anchor: ControlAnchor.BOTTOM_RIGHT,
                 attachToViewer: true,
