@@ -62,7 +62,7 @@ export type SlideProperties = {
 export default class EduViewer {
 
     private Viewer: OpenSeadragon.Viewer;
-    private Overlay: OpenSeadragon.SvgOverlay | undefined;
+    private Overlay: any;
     private Tools: MeasuringPlugin | undefined;
     public SlideTours: SlideTourPlugin | undefined;
     private SlideProperties!: SlideProperties;
@@ -155,7 +155,10 @@ export default class EduViewer {
 
         this.Tools = this.Viewer.Tools(options);
 
-        this.Viewer.removeControl("tool-controls");
+        const existing = document.getElementById("tool-controls");
+        if (existing) {
+            this.Viewer.removeControl(existing);
+        }
 
         if (this.Tools === undefined) return;
 
