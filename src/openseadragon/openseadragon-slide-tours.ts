@@ -43,10 +43,12 @@ export class SlideTourPlugin {
     }
 
     UpdateSlideTourUI() {
-        this.viewer.removeControl("slide-tour-container");
-
+        const existing = document.getElementById("slide-tour-container");
+        if (existing) {
+            this.viewer.removeControl(existing as any);
+        }
         this.viewer.addControl(
-            this.MakeSlideTourElement(),
+            this.MakeSlideTourElement() as any,
             {
                 anchor: ControlAnchor.TOP_LEFT,
                 attachToViewer: true,
