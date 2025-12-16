@@ -157,7 +157,7 @@ export default class EduViewer {
 
         const existing = document.getElementById("tool-controls");
         if (existing) {
-            this.Viewer.removeControl(existing);
+            this.Viewer.removeControl(existing as any);
         }
 
         if (this.Tools === undefined) return;
