@@ -10,7 +10,7 @@ export type MeasurementScaling = {
 
 export type ToolPluginOptions = {
 	viewer: OpenSeadragon.Viewer;
-	overlay: OpenSeadragon.SvgOverlay;
+	overlay: any;
 	scaling: MeasurementScaling;
 }
 
@@ -51,7 +51,7 @@ export class MeasuringPlugin {
 	private scaling: MeasurementScaling = { x: 1, y: 1 };
 	private viewer: OpenSeadragon.Viewer;
 
-	private overlay: OpenSeadragon.SvgOverlay;
+	private overlay: any;
 	private readonly MEASUREMENT_OVERLAY_ID: string;
 
 	constructor(options: ToolPluginOptions) {
@@ -201,7 +201,7 @@ export class MeasuringPlugin {
 		const elements = Array.from(this.overlay.node().children);
 
 		this.overlay.node().replaceChildren(
-			...elements.filter(element => !(element.classList.contains("measurement"))),
+			...elements.filter(element => !((element as Element).classList.contains("measurement"))),
 			svg
 		)
 	}
@@ -209,7 +209,7 @@ export class MeasuringPlugin {
 		const elements = Array.from(this.overlay.node().children);
 
 		this.overlay.node().replaceChildren(
-			...elements.filter(element => !(element.classList.contains("measurement")))
+			...elements.filter(element => !((element as Element).classList.contains("measurement")))
 		)
 	}
 
